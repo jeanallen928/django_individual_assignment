@@ -17,7 +17,6 @@ def sign_up_view(request):
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
         password2 = request.POST.get('password2', '')
-        bio = request.POST.get('bio', '')
 
         if password != password2:
             return render(request, 'accounts/signup.html', {'error': '패스워드를 확인 해 주세요!'})
@@ -28,7 +27,7 @@ def sign_up_view(request):
             if exist_user:
                 return render(request, 'accounts/signup.html', {'error': '계정이 존재합니다.'})
             else:
-                UserModel.objects.create_user(username=username, password=password, bio=bio)
+                UserModel.objects.create_user(username=username, password=password)
                 return redirect('/sign-in')
 
 

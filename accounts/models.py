@@ -6,5 +6,3 @@ class UserModel(AbstractUser):
 
     class Meta:
         db_table = "my_user"
-
-    bio = models.TextField(max_length=500, blank=True)
