@@ -17,6 +17,14 @@
                     <label for="password">비밀번호</label>
                     <input type="password" class="form-control" id="password" name="password">
                 </div>
+                <div class="form-group mt-2 mb-2">
+                    <label for="password2">비밀번호 확인</label>
+                    <input type="password" class="form-control" id="password2" name="password2">
+                </div>
+                <div class="form-group mt-2 mb-2">
+                    <label for="email">이메일</label>
+                    <input type="text" class="form-control" id="email" name="email">
+                </div>
                 {% if error %}
                     <div class="alert alert-danger" role="alert">
                         {{ error }}
