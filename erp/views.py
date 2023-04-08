@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Product, Inbound
+from .models import Product, Inbound, Outbound
 from django.db import transaction
 from django.db.models import Sum
 
@@ -69,3 +69,24 @@ def inbound_create(request):
     # 입고 수량 조정
 
 
+@login_required
+def outbound_create(request):
+    # 상품 출고 view
+    if request.method == 'GET':  # 요청하는 방식이 GET 방식인지 확인하기
+        user = request.user.is_authenticated  # 사용자가 로그인이 되어 있는지 확인하기
+        total_quantity = Outbound.objects.aggregate(Sum('quantity_outbound'))
+        if user:  # 로그인 한 사용자라면
+            all_outbounds = Outbound.objects.all().order_by('-date_outbound')
+            return render(request, 'erp/outbound_create.html', {'outbound': all_outbounds, 'total_quantity': total_quantity.get('quantity_outbound__sum')})
+        else:  # 로그인이 되어 있지 않다면
+            return redirect('/sign-in')
+    # 출고 기록 생성
+    elif request.method == 'POST':  # 요청 방식이 POST 일때
+        my_outbound = Outbound()
+        my_outbound.code_outbound = request.POST.get('code_outbound', '')
+        my_outbound.quantity_outbound = request.POST.get('quantity_outbound', '')
+        my_outbound.price_outbound = request.POST.get('price_outbound', '')
+        my_outbound.save()
+        return redirect('/outbounds')
+    # 재고 수량 조정
+    # return render(request, 'erp/outbound_create.html')

@@ -47,3 +47,17 @@ class Inbound(models.Model):
     inbound_date = models.DateField(auto_now_add=True)
     price_inbound = models.DecimalField(max_digits=19, decimal_places=0, default=0)
 
+
+class Outbound(models.Model):
+    """
+    출고 모델입니다.
+    상품, 수량, 입고 날짜, 금액 필드를 작성합니다.
+    """
+    class Meta:
+        db_table = "outbound"
+
+    code_outbound = models.CharField(max_length=20, null=False)
+    quantity_outbound = models.IntegerField(default=0)
+    # inbound_date = models.DateField(auto_now_add=True)
+    date_outbound = models.DateField(auto_now_add=True)
+    price_outbound = models.DecimalField(max_digits=19, decimal_places=0, default=0)

@@ -13,13 +13,13 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        총 입고 수량 : {{ total_quantity }} 개
+                        총 출고 수량 : {{ total_quantity }} 개
                     </div>
                 </div>
             </div>
             <!-- 오른 쪽 컬럼-->
             <div class="col-md-7">
-                <h2 class="title-left" style="line-height: 200%"> 입고 </h2>
+                <h2 class="title-left" style="line-height: 200%"> 출고 </h2>
                 <!-- 글을 작성 하는 곳 -->
                 <div class="row mb-2">
                     <div class="col-md-12">
@@ -28,21 +28,21 @@
                                 <div class="media">
                                     <div class="media-body">
                                         <p>
-                                        <form class="form-area" method="post" action="/inbounds/">
+                                        <form class="form-area" method="post" action="/outbounds/">
                                             {% csrf_token %}
                                             <div class="form-group mt-2 mb-2">
-                                                <label for="code_inbound">상품코드</label>
-                                                <input type="text" class="form-control" id="code_inbound"
-                                                       name="code_inbound">
+                                                <label for="code_outbound">상품코드</label>
+                                                <input type="text" class="form-control" id="code_outbound"
+                                                       name="code_outbound">
                                             </div>
                                             <div class="form-group mt-2 mb-2">
-                                                <label for="quantity">수량</label>
-                                                <input type="number" class="form-control" id="quantity"
-                                                       name="quantity">
+                                                <label for="quantity_outbound">수량</label>
+                                                <input type="number" class="form-control" id="quantity_outbound"
+                                                       name="quantity_outbound">
                                             </div>
                                             <div class="form-group mt-2 mb-2">
-                                                <label for="price_inbound">금액</label>
-                                                <input class="form-control" id="price_inbound" name="price_inbound">
+                                                <label for="price_outbound">금액</label>
+                                                <input class="form-control" id="price_outbound" name="price_outbound">
                                             </div>
                                             <button type="submit" class="btn btn-primary"
                                                     style="float:right;margin-top: 5%;margin-bottom: 1%">작성하기
@@ -63,13 +63,13 @@
                 <hr>
                 <!-- 작성 된 글이 나오는 곳 -->
                 <div class="row">
-                    {% for ib in inbound %}
+                    {% for ob in outbound %}
                         <div class="col-md-12 mb-2">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="media">
                                         <div class="media-body">
-                                            <h5 class="mt-0">{{ ib.code_inbound }} | {{ ib.quantity }}개 | {{ ib.price_inbound }}원 | {{ ib.inbound_date }}</h5>
+                                            <h5 class="mt-0">{{ ob.code_outbound }} | {{ ob.quantity_outbound }}개 | {{ ob.price_outbound }}원 | {{ ob.date_outbound }}</h5>
                                         </div>
                                     </div>
                                 </div>
