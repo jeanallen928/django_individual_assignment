@@ -6,5 +6,6 @@ urlpatterns = [
     path('erp/', views.erp, name='erp'),
     path('products/', views.product_create, name='product_create'),
     path('inbounds/', views.inbound_create, name='inbound_create'),
-    path('outbounds/', views.outbound_create, name='outbound_create')
+    path('outbounds/', views.outbound_create, name='outbound_create'),
+    path('inventory/', views.inventory, name='inventory'),
 ]

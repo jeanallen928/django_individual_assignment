@@ -6,6 +6,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 
 
+
 def sign_up_view(request):
     if request.method == 'GET':
         user = request.user.is_authenticated
@@ -33,6 +34,7 @@ def sign_up_view(request):
 
 
 def sign_in_view(request):
+
     if request.method == 'POST':
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
@@ -53,5 +55,7 @@ def sign_in_view(request):
 
 @login_required
 def logout(request):
+    all_product = UserModel.objects.all()
+
     auth.logout(request)
     return redirect("/")

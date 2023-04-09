@@ -9,10 +9,10 @@ class Product(models.Model):
     class Meta:
         db_table = "my_products"
 
-    code = models.CharField(max_length=20, null=False)
-    name = models.CharField(max_length=20, null=False)
+    code = models.CharField(max_length=20, default='')
+    name = models.CharField(max_length=20, default='')
     description = models.CharField(max_length=256, default='')
-    price = models.CharField(max_length=20, null=False)
+    price = models.CharField(max_length=20, default='')
     sizes = (
         ('S', 'Small'),
         ('M', 'Medium'),
@@ -42,7 +42,8 @@ class Inbound(models.Model):
     class Meta:
         db_table = "inbound"
 
-    code_inbound = models.CharField(max_length=20, null=False)
+    # item_inbound = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
+    code_inbound = models.CharField(max_length=20)
     quantity = models.IntegerField(default=0)
     inbound_date = models.DateField(auto_now_add=True)
     price_inbound = models.DecimalField(max_digits=19, decimal_places=0, default=0)
@@ -56,7 +57,8 @@ class Outbound(models.Model):
     class Meta:
         db_table = "outbound"
 
-    code_outbound = models.CharField(max_length=20, null=False)
+    # item_outbound = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
+    code_outbound = models.CharField(max_length=20)
     quantity_outbound = models.IntegerField(default=0)
     # inbound_date = models.DateField(auto_now_add=True)
     date_outbound = models.DateField(auto_now_add=True)

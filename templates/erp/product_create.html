@@ -11,6 +11,14 @@
                         <p class="card-text"> {{ user.email }}</p>
                     </div>
                 </div>
+                <h2 class="title-left" style="line-height: 200%"> 상품목록 </h2>
+                {% for item in product %}
+                    <div class="card">
+                        <div class="card-body">
+                            {{ item.code }}
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
             <!-- 오른 쪽 컬럼-->
             <div class="col-md-7">

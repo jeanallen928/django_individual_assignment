@@ -16,6 +16,13 @@
                         총 입고 수량 : {{ total_quantity }} 개
                     </div>
                 </div>
+                {% for key, value in code_quantity_dict.items %}
+                    <div class="card">
+                        <div class="card-body">
+                            {{ key }} 입고 수량 : {{ value }}개
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
             <!-- 오른 쪽 컬럼-->
             <div class="col-md-7">
